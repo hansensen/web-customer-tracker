@@ -34,7 +34,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void addCustomer(Customer c) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(c);
+		session.saveOrUpdate(c);
+	}
+
+	@Override
+	public Customer getCustomer(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(Customer.class, id);
+	}
+
+	@Override
+	public void deleteCustomer(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(session.get(Customer.class, id));
 	}
 
 }
