@@ -6,9 +6,12 @@
 
 <head>
 
-<title> List Customers </title>
-
-</head>
+	<title> List Customers </title>
+	
+	<link type="text/css"
+			rel="stylesheet"
+			href="${pageCOntext.request.contextPath}/web-customer-tracker/resources/css/style.css" />
+	</head>
 
 <body>
 
