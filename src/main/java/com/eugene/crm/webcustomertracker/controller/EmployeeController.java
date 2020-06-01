@@ -1,8 +1,11 @@
 package com.eugene.crm.webcustomertracker.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +39,11 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/save")
-	public String saveEmployee(@ModelAttribute("employee") Employee e) {
+	public String saveEmployee(@Valid @ModelAttribute("employee") Employee e, BindingResult theBindingResult) {
+		if (theBindingResult.hasErrors()) {
+			return "employees/employee-form";
+		}
+
 		employeeService.save(e);
 		return "redirect:/employees/list";
 	}
